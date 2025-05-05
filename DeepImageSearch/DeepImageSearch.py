@@ -154,13 +154,8 @@ class Search_Setup:
             self._start_indexing(data)
         else:
             print("\033[91m Metadata and Features are already present, Do you want Extract Again? Enter yes or no")
-            flag = str(input())
-            if flag.lower() == 'yes':
-                data = self._start_feature_extraction()
-                self._start_indexing(data)
-            else:
-                print("\033[93m Meta data already Present, Please Apply Search!")
-                print(os.listdir(f'metadata-files/{self.model_name}'))
+            data = self._start_feature_extraction()
+            self._start_indexing(data)
         self.image_data = pd.read_pickle(config.image_data_with_features_pkl(self.model_name))
         self.f = len(self.image_data['features'][0])
 
